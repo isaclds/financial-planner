@@ -3,8 +3,6 @@
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "dist",
-    "rootDir": "./src",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -21,7 +19,6 @@
       "@modules/*": ["./src/app/modules/*"],
       "@test/*": ["./test/*"]
     },
-    "rootDirs": ["./src", "./test"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
