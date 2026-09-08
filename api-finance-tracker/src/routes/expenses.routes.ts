@@ -1,6 +1,8 @@
 import { Router } from "express";
+import { ExpenseCategoryController } from "../controllers/index";
 
 const router = Router();
+const categoryController = new ExpenseCategoryController();
 
 router.get("/", (req, res) => {
   res.json({
@@ -9,5 +11,7 @@ router.get("/", (req, res) => {
     price: 28.9,
   });
 });
+
+router.get("/categories", (req, res) => categoryController.findAll(req, res));
 
 export default router;
