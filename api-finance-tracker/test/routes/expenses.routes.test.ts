@@ -1,6 +1,6 @@
 import request from "supertest";
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { SetupApplication } from "../../src/app";
+import { SetupApplication } from "../../src/App";
 
 vi.mock("../../controller/expenses");
 

@@ -1,6 +1,6 @@
 import express from "express";
 import { Server } from "http";
-import router from "./routes/routes";
+import router from "./routes/Routes";
 import { Pool } from "pg";
 import database from "./config/database";
 import logger from "./config/logger";
