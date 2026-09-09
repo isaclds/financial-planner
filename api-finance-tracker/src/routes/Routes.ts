@@ -1,6 +1,6 @@
 import { Router } from "express";
-import IncomeRouter from "./income.routes";
-import ExpensesRouter from "./expenses.routes";
+import IncomeRouter from "./income.route";
+import ExpensesRouter from "./expenses.route";
 
 class Routes {
   static define(router: Router): Router {
