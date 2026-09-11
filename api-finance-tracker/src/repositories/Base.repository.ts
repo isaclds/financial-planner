@@ -1,8 +1,8 @@
-import { Pool, QueryResult, QueryResultRow } from "pg";
-import pool from "../config/database";
+import { Pool, QueryResult, QueryResultRow } from 'pg';
+import pool from '../config/database';
 
 export abstract class BaseRepository<T extends QueryResultRow> {
-  protected tableName: string = "";
+  protected tableName: string = '';
   protected pool: Pool = pool;
 
   protected async query<R extends QueryResultRow = any>(
@@ -46,10 +46,10 @@ export abstract class BaseRepository<T extends QueryResultRow> {
 
     const fields = entries.map(([key]) => key);
     const values = entries.map(([_, value]) => value);
-    const placeholders = values.map((_, index) => `$${index + 1}`).join(", ");
+    const placeholders = values.map((_, index) => `$${index + 1}`).join(', ');
 
     const query = `
-      INSERT INTO ${this.tableName} (${fields.join(", ")}) 
+      INSERT INTO ${this.tableName} (${fields.join(', ')}) 
       VALUES (${placeholders}) 
       RETURNING *
     `;
@@ -70,12 +70,12 @@ export abstract class BaseRepository<T extends QueryResultRow> {
       ]);
 
     if (entries.length === 0) {
-      throw new Error("No fields to update");
+      throw new Error('No fields to update');
     }
 
     const setClause = entries
       .map(([key], index) => `${key} = $${index + 2}`)
-      .join(", ");
+      .join(', ');
 
     const values = [id, ...entries.map(([_, value]) => value)];
 

@@ -1,9 +1,9 @@
-import express from "express";
-import { Server } from "http";
-import router from "./routes/Routes";
-import { Pool } from "pg";
-import database from "./config/database";
-import logger from "./config/logger";
+import express from 'express';
+import { Server } from 'http';
+import router from './routes/Routes';
+import { Pool } from 'pg';
+import database from './config/database';
+import logger from './config/logger';
 
 export class SetupApplication {
   private server?: Server;
@@ -32,9 +32,9 @@ export class SetupApplication {
     try {
       this.pool = database;
       await this.pool.connect();
-      logger.info("Database connected successfully");
+      logger.info('Database connected successfully');
     } catch (error) {
-      logger.error("Database connection failed:", error);
+      logger.error('Database connection failed:', error);
       process.exit(1);
     }
   }

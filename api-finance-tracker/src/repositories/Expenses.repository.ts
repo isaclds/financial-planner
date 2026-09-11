@@ -1,16 +1,16 @@
-import { BaseRepository } from "./Base.repository";
-import { Expenses } from "../models/Expenses.model";
+import { BaseRepository } from './Base.repository';
+import { Expenses } from '../models/Expenses.model';
 
 export class ExpensesRepository extends BaseRepository<Expenses> {
-  protected tableName: string = "expenses";
+  protected tableName: string = 'expenses';
 
   public async create(
-    data: Omit<Expenses, "id" | "created_at">,
+    data: Omit<Expenses, 'id' | 'created_at'>,
   ): Promise<Expenses> {
     return this.insert(data);
   }
 
-  public async createWithDate(data: Omit<Expenses, "id">): Promise<Expenses> {
+  public async createWithDate(data: Omit<Expenses, 'id'>): Promise<Expenses> {
     return this.insert(data);
   }
 
@@ -39,7 +39,7 @@ export class ExpensesRepository extends BaseRepository<Expenses> {
 
   public async update(
     id: number,
-    data: Partial<Omit<Expenses, "id" | "created_at">>,
+    data: Partial<Omit<Expenses, 'id' | 'created_at'>>,
   ): Promise<Expenses | null> {
     return this.update(id, data);
   }

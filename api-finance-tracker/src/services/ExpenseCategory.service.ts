@@ -1,5 +1,5 @@
-import { ExpenseCategory } from "../models/index";
-import { ExpenseCategoryRepository } from "../repositories/index";
+import { ExpenseCategory } from '../models/index';
+import { ExpenseCategoryRepository } from '../repositories/index';
 
 export class ExpenseCategoryService {
   private repository: ExpenseCategoryRepository;

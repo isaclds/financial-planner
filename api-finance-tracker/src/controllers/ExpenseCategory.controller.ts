@@ -1,6 +1,8 @@
-import { Request, Response } from "express";
-import { ExpenseCategoryService } from "../services/index";
-import logger from "../config/logger";
+import { Request, Response } from 'express';
+import { ExpenseCategoryService } from '../services/index';
+import { HttpStatus } from '@src/config/status';
+import createBodyResponse from '@src/utils/createResponseBody';
+import logger from '../config/logger';
 
 export class ExpenseCategoryController {
   private service: ExpenseCategoryService;
@@ -9,24 +11,32 @@ export class ExpenseCategoryController {
     this.service = new ExpenseCategoryService();
   }
 
-  public async findAll(req: Request, res: Response): Promise<Response> {
-    // melhorar esse tratamento de erro
+  public async findAll(_req: Request, res: Response): Promise<Response> {
     try {
       const categories = await this.service.findAll();
-      console.log(categories);
-      return res.status(200).json({
-        success: true,
-        data: categories,
-        count: categories?.length,
-      });
+      return res
+        .status(HttpStatus.OK)
+        .json(
+          createBodyResponse(
+            true,
+            HttpStatus.OK,
+            'All expenses categories retrieved',
+            categories,
+          ),
+        );
     } catch (error) {
-      const errorMessage = "Error fetching expense categories";
+      const errorMessage = 'Error fetching expense categories';
       logger.error(errorMessage, error);
-      return res.status(500).json({
-        success: false,
-        message: errorMessage,
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json(
+          createBodyResponse(
+            false,
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            errorMessage,
+            error instanceof Error ? error.message : 'Unknown error',
+          ),
+        );
     }
   }
 }

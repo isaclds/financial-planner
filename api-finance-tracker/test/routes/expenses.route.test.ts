@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import request from "supertest";
-import { SetupApplication } from "../../src/App";
-import { ExpenseCategoryController } from "../../src/controllers/index";
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import request from 'supertest';
+import { SetupApplication } from '../../src/App';
+import { ExpenseCategoryController } from '../../src/controllers/index';
 
-describe("Expense routes", () => {
+describe('Expense routes', () => {
   let application: SetupApplication;
 
   beforeEach(() => {
@@ -15,8 +15,8 @@ describe("Expense routes", () => {
     vi.clearAllMocks();
   });
 
-  it.todo("should return expenses list with 200", async () => {
-    const expectedExpenses = [{ id: "1", name: "Groceries", value: 120.5 }];
+  it.todo('should return expenses list with 200', async () => {
+    const expectedExpenses = [{ id: '1', name: 'Groceries', value: 120.5 }];
 
     // (getExpenses as unknown as ReturnType<typeof vi.fn>).mockImplementation(
     //   (req, res) => {
@@ -24,17 +24,17 @@ describe("Expense routes", () => {
     //   },
     // );
 
-    const response = await request(application.app).get("/expenses").send();
+    const response = await request(application.app).get('/expenses').send();
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expectedExpenses);
   });
 
-  describe("Categories routes", () => {
-    it("should return all the expenses categories", async () => {
+  describe('Categories routes', () => {
+    it('should return all the expenses categories', async () => {
       const expectedCategories = [
-        { id: 1, name: "Bank Fees" },
-        { id: 2, name: "Food" },
+        { id: 1, name: 'Bank Fees' },
+        { id: 2, name: 'Food' },
       ];
 
       // Mock do controller diretamente
@@ -46,7 +46,7 @@ describe("Expense routes", () => {
 
       vi.spyOn(
         ExpenseCategoryController.prototype,
-        "findAll",
+        'findAll',
       ).mockImplementation(async (req, res) => {
         return res.status(200).json({
           success: true,
@@ -56,7 +56,7 @@ describe("Expense routes", () => {
       });
 
       const response = await request(application.app)
-        .get("/expenses/categories")
+        .get('/expenses/categories')
         .send();
 
       expect(response.status).toBe(200);

@@ -1,11 +1,11 @@
-import { BaseRepository } from "./Base.repository";
-import { ExpenseCategory } from "../models/ExpenseCategory.model";
+import { BaseRepository } from './Base.repository';
+import { ExpenseCategory } from '../models/ExpenseCategory.model';
 
 export class ExpenseCategoryRepository extends BaseRepository<ExpenseCategory> {
-  protected tableName: string = "expense_categories";
+  protected tableName: string = 'expense_categories';
 
   public async create(
-    data: Omit<ExpenseCategory, "id">,
+    data: Omit<ExpenseCategory, 'id'>,
   ): Promise<ExpenseCategory> {
     return this.insert(data);
   }
@@ -20,7 +20,7 @@ export class ExpenseCategoryRepository extends BaseRepository<ExpenseCategory> {
 
   public async update(
     id: number,
-    data: Partial<Omit<ExpenseCategory, "id">>,
+    data: Partial<Omit<ExpenseCategory, 'id'>>,
   ): Promise<ExpenseCategory | null> {
     return this.update(id, data);
   }

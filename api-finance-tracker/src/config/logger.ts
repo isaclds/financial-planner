@@ -3,7 +3,7 @@ import {
   format,
   transports,
   Logger as WinstonLogger,
-} from "winston";
+} from 'winston';
 const { combine, timestamp, printf } = format;
 
 class Logger {
@@ -12,14 +12,14 @@ class Logger {
   private logFilename?: string;
 
   constructor(logLevel?: string, logFilename?: string) {
-    this.logLevel = logLevel || process.env.LOG_LEVEL || "info";
+    this.logLevel = logLevel || process.env.LOG_LEVEL || 'info';
     this.logFilename = logFilename || process.env.LOG_FILENAME;
     this.logger = this.createLogger();
   }
 
   private getLocalTime(): string {
-    return new Date().toLocaleString("pt-BR", {
-      timeZone: "America/Sao_Paulo",
+    return new Date().toLocaleString('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
       hour12: false,
     });
   }
@@ -39,12 +39,10 @@ class Logger {
   }
 
   private createTransports(): (
-    | transports.ConsoleTransportInstance
-    | transports.FileTransportInstance
+    transports.ConsoleTransportInstance | transports.FileTransportInstance
   )[] {
     const transportsList: (
-      | transports.ConsoleTransportInstance
-      | transports.FileTransportInstance
+      transports.ConsoleTransportInstance | transports.FileTransportInstance
     )[] = [new transports.Console()];
 
     if (this.logFilename) {

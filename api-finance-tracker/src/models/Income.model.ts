@@ -17,9 +17,9 @@ export class IncomeEntity {
   ) {}
 
   public formatValue(): string {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
     }).format(this.value);
   }
 }
