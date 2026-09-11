@@ -39,4 +39,20 @@ export class ExpenseCategoryController {
         );
     }
   }
+
+  public async findById(req: Request, res: Response): Promise<Response> {
+    // TODO: implementar
+  }
+
+  public async create(req: Request, res: Response): Promise<Response> {
+    await this.service.create();
+  }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    // TODO: implementar
+  }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    // TODO: implementar
+  }
 }
