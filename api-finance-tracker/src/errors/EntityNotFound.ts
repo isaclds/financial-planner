@@ -2,7 +2,10 @@ import { AppError } from './AppError';
 import { HttpStatus } from '@src/config/status';
 
 export class EntityNotFound extends AppError {
-  constructor(message: string) {
-    super(message, HttpStatus.NOT_FOUND);
+  constructor(entityName: string = 'Resource') {
+    super(
+      `The ${entityName} passed on the id wasn't found`,
+      HttpStatus.NOT_FOUND,
+    );
   }
 }

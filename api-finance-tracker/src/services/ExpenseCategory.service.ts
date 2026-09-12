@@ -3,14 +3,13 @@ import { ExpenseCategory } from '../models/index';
 import { ExpenseCategoryRepository } from '../repositories/index';
 import { EntityNotFound } from '@src/errors/EntityNotFound';
 
+const ENTITY_NAME = 'expense category';
+
 export class ExpenseCategoryService {
   private repository: ExpenseCategoryRepository;
-  private entityNotFoundMessage: string;
 
-  constructor() {
-    this.repository = new ExpenseCategoryRepository();
-    this.entityNotFoundMessage =
-      "The expense category passed on the id wasn't found";
+  constructor(repository?: ExpenseCategoryRepository) {
+    this.repository = repository ?? new ExpenseCategoryRepository();
   }
 
   public async findAll(): Promise<ExpenseCategory[] | null> {
@@ -21,9 +20,7 @@ export class ExpenseCategoryService {
     const parsedId = Number(id);
 
     if (!this.validateId(parsedId)) {
-      throw new ValidationError(
-        'The expense id is required and must be a valid number',
-      );
+      throw ValidationError.invalidId(ENTITY_NAME);
     }
 
     return this.repository.findById(parsedId);
@@ -32,8 +29,9 @@ export class ExpenseCategoryService {
   public async create(name: string): Promise<ExpenseCategory> {
     const trimmedName = name?.trim();
 
-    if (!trimmedName)
-      throw new ValidationError('The expense category name is required');
+    if (!trimmedName) {
+      throw ValidationError.requiredField('name', ENTITY_NAME);
+    }
 
     return this.repository.create({ name: trimmedName });
   }
@@ -45,18 +43,18 @@ export class ExpenseCategoryService {
     const parsedId = Number(id);
 
     if (!this.validateId(parsedId)) {
-      throw new ValidationError(
-        'The expense id is required and must be a valid number',
-      );
+      throw ValidationError.invalidId(ENTITY_NAME);
     }
+
     const trimmedName = name?.trim();
 
-    if (!trimmedName)
-      throw new ValidationError('The expense category name is required');
+    if (!trimmedName) {
+      throw ValidationError.requiredField('name', ENTITY_NAME);
+    }
 
     const expense = await this.repository.findById(parsedId);
 
-    if (!expense) throw new EntityNotFound(this.entityNotFoundMessage);
+    if (!expense) throw new EntityNotFound(ENTITY_NAME);
 
     return this.repository.update(expense.id, { name: trimmedName });
   }
@@ -65,9 +63,7 @@ export class ExpenseCategoryService {
     const parsedId = Number(id);
 
     if (!this.validateId(parsedId)) {
-      throw new ValidationError(
-        'The expense id is required and must be a valid number',
-      );
+      throw ValidationError.invalidId(ENTITY_NAME);
     }
 
     await this.repository.delete(parsedId);

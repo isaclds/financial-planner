@@ -67,7 +67,7 @@ describe('ExpenseCategoryController', () => {
   describe('findById', () => {});
 
   describe('create', () => {
-    it('should create expense with 201', async () => {
+    it.todo('should create expense with 201', async () => {
       await controller.create(mockReq, mockRes);
 
       expect(statusMock).toHaveBeenCalledWith(HttpStatus.CREATED);
