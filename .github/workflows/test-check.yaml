@@ -36,10 +36,10 @@ jobs:
           cache-dependency-path: api-finance-tracker/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run vitest tests
-        run: vitest run
+        run: npx vitest run
 
   build-web-financial-planner:
     needs: changes
@@ -64,7 +64,7 @@ jobs:
           EOF
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: vitest run
