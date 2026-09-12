@@ -1,0 +1,84 @@
+categoriesCollection:
+  get:
+    tags: [Income]
+    summary: Lista categorias de receita
+    responses:
+      '200':
+        description: Lista de categorias
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeCategoryListResponse'
+
+  post:
+    tags: [Income]
+    summary: Cria categoria de receita
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IncomeCategoryInput'
+    responses:
+      '201':
+        description: Categoria criada
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+
+categoriesResource:
+  get:
+    tags: [Income]
+    summary: Busca categoria de receita por ID
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    responses:
+      '200':
+        description: Categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'
+
+  put:
+    tags: [Income]
+    summary: Atualiza categoria de receita
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IncomeCategoryInput'
+    responses:
+      '200':
+        description: Categoria atualizada
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'
+
+  delete:
+    tags: [Income]
+    summary: Remove categoria de receita
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    responses:
+      '204':
+        description: Removida
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'

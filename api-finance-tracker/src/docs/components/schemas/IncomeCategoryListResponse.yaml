@@ -1,0 +1,16 @@
+type: object
+required: [success, status, title, data]
+properties:
+  success:
+    type: boolean
+    enum: [true]
+  status:
+    type: integer
+    example: 200
+  title:
+    type: string
+    example: OK
+  data:
+    type: array
+    items:
+      $ref: './IncomeCategory.yaml'

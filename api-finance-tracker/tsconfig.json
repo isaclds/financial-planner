@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "CommonJS",
+    "outDir": "./dist",
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true,
@@ -14,6 +15,9 @@
     "noImplicitReturns": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
     "paths": {
       "@src/*": ["./src/*"],
       "@modules/*": ["./src/app/modules/*"],

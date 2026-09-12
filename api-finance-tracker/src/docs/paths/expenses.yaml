@@ -1,0 +1,84 @@
+categoriesCollection:
+  get:
+    tags: [Expenses]
+    summary: Lista categorias de despesa
+    responses:
+      '200':
+        description: Lista de categorias
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryListResponse'
+
+  post:
+    tags: [Expenses]
+    summary: Cria categoria de despesa
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExpenseCategoryInput'
+    responses:
+      '201':
+        description: Categoria criada
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+
+categoriesResource:
+  get:
+    tags: [Expenses]
+    summary: Busca categoria de despesa por ID
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    responses:
+      '200':
+        description: Categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'
+
+  put:
+    tags: [Expenses]
+    summary: Atualiza categoria de despesa
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExpenseCategoryInput'
+    responses:
+      '200':
+        description: Categoria atualizada
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCategoryResponse'
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'
+
+  delete:
+    tags: [Expenses]
+    summary: Remove categoria de despesa
+    parameters:
+      - $ref: '../components/parameters.yaml#/IdPath'
+    responses:
+      '204':
+        description: Removida
+      '400':
+        $ref: '../components/responses.yaml#/ValidationError'
+      '404':
+        $ref: '../components/responses.yaml#/NotFound'

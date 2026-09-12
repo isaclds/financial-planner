@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && npm run copy:docs",
+    "copy:docs": "cpy \"src/docs/**/*.yaml\" dist/docs --parents",
     "start": "npm run build && node dist/server.js",
     "dev": "tsx src/server.ts",
     "test": "vitest run --watch",
@@ -13,11 +14,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.20.2",
     "@types/pg": "^8.23.1",
     "@types/supertest": "^7.2.1",
+    "@types/swagger-ui-express": "^4.1.8",
     "supertest": "^7.2.2",
     "tsc-alias": "^1.9.5",
     "tsx": "^4.23.13",
@@ -25,10 +28,13 @@
     "vitest": "^5.0.0"
   },
   "dependencies": {
+    "cpy-cli": "^7.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "js-yaml": "^5.4.1",
     "pg": "^8.23.0",
     "prettier": "^3.9.6",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.19.0"
   }
 }

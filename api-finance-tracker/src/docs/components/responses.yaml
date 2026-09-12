@@ -1,0 +1,31 @@
+NotFound:
+  description: Recurso não encontrado (EntityNotFound)
+  content:
+    application/json:
+      schema:
+        $ref: './schemas/Error.yaml'
+      example:
+        success: false
+        status: 404
+        title: Not Found
+        data: The ExpenseCategory passed on the id wasn't found
+
+ValidationError:
+  description: Erro de validação (ValidationError)
+  content:
+    application/json:
+      schema:
+        $ref: './schemas/Error.yaml'
+      examples:
+        invalidId:
+          value:
+            success: false
+            status: 400
+            title: Bad Request
+            data: The ExpenseCategory id is required and must be a valid number
+        requiredField:
+          value:
+            success: false
+            status: 400
+            title: Bad Request
+            data: The ExpenseCategory name is required

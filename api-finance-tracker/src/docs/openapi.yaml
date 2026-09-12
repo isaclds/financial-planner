@@ -1,0 +1,54 @@
+openapi: 3.0.3
+
+info:
+  title: Finance Tracker API
+  version: 1.0.0
+  description: API do projeto finance-tracker
+
+servers:
+  - url: http://localhost:3000
+    description: Desenvolvimento local
+
+tags:
+  - name: Expenses
+  - name: Income
+
+paths:
+  /expenses/categories:
+    $ref: './paths/expenses.yaml#/categoriesCollection'
+  /expenses/categories/{id}:
+    $ref: './paths/expenses.yaml#/categoriesResource'
+
+  /income/categories:
+    $ref: './paths/income.yaml#/categoriesCollection'
+  /income/categories/{id}:
+    $ref: './paths/income.yaml#/categoriesResource'
+
+components:
+  parameters:
+    $ref: './components/parameters.yaml'
+
+  responses:
+    $ref: './components/responses.yaml'
+
+  schemas:
+    Error:
+      $ref: './components/schemas/Error.yaml'
+
+    ExpenseCategory:
+      $ref: './components/schemas/ExpenseCategory.yaml'
+    ExpenseCategoryInput:
+      $ref: './components/schemas/ExpenseCategoryInput.yaml'
+    ExpenseCategoryListResponse:
+      $ref: './components/schemas/ExpenseCategoryListResponse.yaml'
+    ExpenseCategoryResponse:
+      $ref: './components/schemas/ExpenseCategoryResponse.yaml'
+
+    IncomeCategory:
+      $ref: './components/schemas/IncomeCategory.yaml'
+    IncomeCategoryInput:
+      $ref: './components/schemas/IncomeCategoryInput.yaml'
+    IncomeCategoryListResponse:
+      $ref: './components/schemas/IncomeCategoryListResponse.yaml'
+    IncomeCategoryResponse:
+      $ref: './components/schemas/IncomeCategoryResponse.yaml'
