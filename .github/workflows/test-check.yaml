@@ -1,6 +1,6 @@
 name: test-check
 on:
-  push:
+  pull_request:
 
 jobs:
   changes:
